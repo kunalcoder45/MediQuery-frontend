@@ -1,7 +1,6 @@
-import type {NextConfig} from 'next';
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Your other configurations like typescript, eslint, images go here
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -17,6 +16,16 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  
+  // This is the rewrite function
+  async rewrites() {
+    return [
+      {
+        source: '/api/web3forms/:path*',
+        destination: 'https://api.web3forms.com/:path*',
+      },
+    ];
   },
 };
 
