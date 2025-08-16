@@ -43,7 +43,6 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
 
   // Replace with your actual Web3Forms API key
-  // This is the correct API Key from the original code.
   const API_KEY = "408f0b49-e79f-47f0-ad3e-e11724ccc28a";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -73,8 +72,8 @@ export default function ContactPage() {
     setSubmitStatus(null);
 
     try {
-      // This is the core `fetch` request. It is correctly structured.
-      const response = await fetch('/api/web3forms/submit', {
+      // Updated to use your Next.js API route instead of direct Web3Forms
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -282,7 +281,7 @@ export default function ContactPage() {
 
                 <Button
                   onClick={handleSubmit}
-                  className="w-full h-12 text-lg font-medium bg-secondary hover:to-green-600 transition-all duration-200"
+                  className="w-full h-12 text-lg font-medium bg-secondary hover:to-green-600 border-2 border-gray-400 transition-all duration-200"
                   disabled={isSubmitting}
                   type="button"
                 >
@@ -308,7 +307,7 @@ export default function ContactPage() {
                         Secure Contact Form
                       </div>
                       <div className="text-blue-700 dark:text-blue-300">
-                        This form is powered by Web3Forms. Your message will be tagged as coming from the MediQuery website for easy identification.
+                        This form is powered by Web3Forms via our secure API. Your message will be tagged as coming from the MediQuery website for easy identification.
                       </div>
                     </div>
                   </div>
@@ -406,11 +405,11 @@ export default function ContactPage() {
                   <span className="text-sm font-medium">Form is Live & Ready</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  This contact form is fully functional and connected to Web3Forms. All messages are automatically tagged with source information to identify they came from the MediQuery website.
+                  This contact form is now properly configured with a secure API route. All messages are automatically tagged with source information to identify they came from the MediQuery website.
                 </p>
                 <div className="flex items-center space-x-2 text-xs text-muted-foreground">
                   <Globe className="h-3 w-3" />
-                  <span>Web3Forms Integration Active</span>
+                  <span>Secure API Integration Active</span>
                 </div>
               </div>
             </CardContent>
