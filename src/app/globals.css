@@ -128,17 +128,82 @@ html::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, and Opera */
 }
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 10px; /* This sets the width of the entire scrollbar */
+  width: 10px;
+  /* This sets the width of the entire scrollbar */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #908d8d;
+  background: #ebeaea;
   border-radius: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #6dc243; /* This is the color of the draggable part of the scrollbar */
+  background-color: #5e24ff;
+  /* This is the color of the draggable part of the scrollbar */
   border-radius: 5px;
   cursor: pointer;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+@keyframes ping-slow {
+
+  0%,
+  100% {
+    transform: scale(0.3);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+}
+
+@keyframes ping-medium {
+
+  0%,
+  100% {
+    transform: scale(0.4);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+}
+
+@keyframes ping-fast {
+
+  0%,
+  100% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-ping-medium {
+  animation: ping-medium 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation-delay: 0.2s;
+}
+
+.animate-ping-fast {
+  animation: ping-fast 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation-delay: 0.4s;
 }

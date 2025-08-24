@@ -45,6 +45,7 @@
     "firebase": "^11.7.0",
     "genkit": "^1.8.0",
     "lucide-react": "^0.475.0",
+    "marked": "^16.2.0",
     "motion": "^12.23.12",
     "next": "^15.4.6",
     "patch-package": "^8.0.0",
