@@ -1,7 +1,6 @@
 "use client";
 
 import Link from 'next/link';
-import { LogoIcon } from '@/components/icons/LogoIcon';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -24,11 +23,11 @@ export function AppHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex justify-between h-16 items-center">
-        <Link href="/" className="mr-6 ml-8 flex items-center space-x-2">
-          <LogoIcon className="h-6 w-6 text-primary" />
+        <Link href="/" className="mr-6 ml-6 flex items-center space-x-2">
+          <img src="/logo.png" alt="MediQuery Logo" className="h-6 w-6 text-primary" />
           <span className="font-bold sm:inline-block text-lg">MediQuery</span>
         </Link>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-6 items-center space-x-2 mr-4 xl:mr-8">
           {navItems.map((item) => (
@@ -41,9 +40,9 @@ export function AppHeader() {
             </Link>
           ))}
         </nav>
-        
+
         {/* Mobile Navigation */}
-        <div className="flex flex-1 items-center justify-end gap-2 md:hidden">
+        <div className="flex flex-1 items-center justify-end gap-2 md:hidden mr-2">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -54,9 +53,9 @@ export function AppHeader() {
             <SheetContent side="right">
               <SheetHeader>
                 <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-8">
                   <Link href="/" className="flex items-center space-x-2 mb-4">
-                    <LogoIcon className="h-6 w-6 text-primary" />
+                    <img src="/logo.png" alt="MediQuery Logo" className="h-6 w-6 text-primary" />
                     <span className="font-bold">MediQuery</span>
                   </Link>
                   {navItems.map((item) => (
