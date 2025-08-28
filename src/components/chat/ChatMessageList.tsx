@@ -21,16 +21,18 @@
 //   }, [messages]);
 
 //   return (
-//     <ScrollArea className="flex-grow overflow-y-auto h-full md:pb-0 pb-3" ref={scrollAreaRef}>
-//       <div ref={viewportRef} className="p-1 md:p-2 space-y-4 container mx-auto max-w-8xl">
+//     <ScrollArea className="flex-grow overflow-y-auto h-full pb-6" ref={scrollAreaRef}>
+//       <div ref={viewportRef} className="p-2 space-y-2 container">
 //         {messages.map((msg) => (
 //           <ChatMessage key={msg.id} message={msg} onCheckNearbyStores={onCheckNearbyStores} />
 //         ))}
+
+//         {/* Bottom spacing for input area */}
+//         <div className="h-32"></div>
 //       </div>
 //     </ScrollArea>
 //   );
 // }
-
 
 
 "use client";
@@ -59,9 +61,12 @@ export function ChatMessageList({ messages, onCheckNearbyStores }: ChatMessageLi
     <ScrollArea className="flex-grow overflow-y-auto h-full pb-6" ref={scrollAreaRef}>
       <div ref={viewportRef} className="p-2 space-y-2 container">
         {messages.map((msg) => (
-          <ChatMessage key={msg.id} message={msg} onCheckNearbyStores={onCheckNearbyStores} />
+          <div key={msg.id} className="space-y-2">
+            {/* Chat Message */}
+            <ChatMessage message={msg} onCheckNearbyStores={onCheckNearbyStores} />
+          </div>
         ))}
-        
+                
         {/* Bottom spacing for input area */}
         <div className="h-32"></div>
       </div>
