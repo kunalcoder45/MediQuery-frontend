@@ -2042,7 +2042,8 @@ import {
 } from "@/components/ui/sheet";
 import { ChatHistoryItem } from "./ChatHistoryItem";
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000/api";
+
 
 interface Conversation {
   id: string;

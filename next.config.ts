@@ -61,15 +61,17 @@ const nextConfig = {
         destination: 'https://api.web3forms.com/:path*',
       },
       // New rule for your Auth service
-      {
-        source: '/api/auth/:path*',
-        destination: 'http://localhost:5000/api/auth/:path*',
-      },
+      // {
+      //   source: '/api/auth/:path*',
+      //   // destination: 'http://localhost:5000/api/auth/:path*',
+      //   destination: 'https://mediquery-auth-server.onrender.com/api/auth/:path*',
+      // },
       // New rule for your Chat service
-      {
-        source: '/api/chat/:path*',
-        destination: 'http://localhost:8000/api/chat/:path*',
-      },
+      // {
+      //   source: '/api/chat/:path*',
+      //   // destination: 'http://localhost:8000/api/chat/:path*',
+      //   destination: 'https://mediquery-chat-server.onrender.com/api/chat/:path*',
+      // },
     ];
   },
 };
