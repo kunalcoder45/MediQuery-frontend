@@ -13,7 +13,7 @@ export default function LayoutWrapper({ children }: { children: ReactNode }) {
   return (
     <>
       <AppHeader />
-      <main className="flex-grow container mx-auto">
+      <main className="w-full">
         {children}
       </main>
       {!hideFooter && <AppFooter />}

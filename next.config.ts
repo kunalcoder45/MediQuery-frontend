@@ -68,7 +68,7 @@ const nextConfig = {
       // New rule for your Chat service
       {
         source: '/api/chat/:path*',
-        destination: 'http://localhost:6000/api/chat/:path*',
+        destination: 'http://localhost:8000/api/chat/:path*',
       },
     ];
   },
