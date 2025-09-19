@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useAuthContext } from "@/contexts/AuthContext";
@@ -35,7 +33,9 @@ export default function SharedChatPage() {
   const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [chatTitle, setChatTitle] = useState<string>("");
-  const CHAT_API_BASE_URL = process.env.NEXT_PUBLIC_CHAT_API_BASE_URL || 'http://localhost:8000/';
+  
+  // Fixed: Updated to use your production backend URL
+  const CHAT_API_BASE_URL = process.env.NEXT_PUBLIC_CHAT_API_BASE_URL || 'https://mediquery-chat-server.onrender.com';
 
   useEffect(() => {
     const fetchSharedChat = async () => {
@@ -47,14 +47,17 @@ export default function SharedChatPage() {
 
       try {
         console.log(`Fetching shared chat: ${chatId}`);
+        console.log(`API URL: ${CHAT_API_BASE_URL}/api/public/conversations/${chatId}`);
 
-        // Use full URL for API call
-        const response = await fetch(`${CHAT_API_BASE_URL}/public/conversations/${chatId}`, {
+        // Fixed: Corrected API URL format
+        const response = await fetch(`${CHAT_API_BASE_URL}/api/public/conversations/${chatId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         });
+
+        console.log(`Response status: ${response.status}`);
 
         if (!response.ok) {
           if (response.status === 404) {
@@ -65,6 +68,7 @@ export default function SharedChatPage() {
         }
 
         const data = await response.json();
+        console.log('Received data:', data);
 
         if (data.conversation && data.conversation.messages) {
           setSharedMessages(data.conversation.messages);
@@ -88,7 +92,7 @@ export default function SharedChatPage() {
     } else if (!loading) {
       setIsLoaded(true);
     }
-  }, [chatId, loading]);
+  }, [chatId, loading, CHAT_API_BASE_URL]);
 
   // Show loading state
   if (loading || !isLoaded) {
@@ -132,7 +136,7 @@ export default function SharedChatPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {chatTitle && (
-        <div className="bg-blue-50 border-b border-blue-200 p-2 text-center md:p-4">
+        <div className="bg-blue-50 border-b border-b-blue-200 p-2 text-center md:p-4">
           <h1 className="text-base font-semibold text-blue-900 md:text-lg">
             Shared Chat: {chatTitle}
           </h1>

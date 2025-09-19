@@ -2200,7 +2200,7 @@ export function ChatInterface({ sharedMessages }: ChatInterfaceProps) {
 
     setIsLoadingConversations(true);
     try {
-      const data = await apiCall('/chat/conversations');
+      const data = await apiCall(`/api/chat/conversations`);
       setConversations(data.conversations || []);
     } catch (error) {
       console.error('Error loading conversations:', error);
