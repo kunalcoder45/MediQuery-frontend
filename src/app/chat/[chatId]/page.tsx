@@ -1,45 +1,8 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   typescript: {
-//     ignoreBuildErrors: true,
-//   },
-//   eslint: {
-//     ignoreDuringBuilds: true,
-//   },
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'picsum.photos',
-//         port: '',
-//         pathname: '/**',
-//       },
-//     ],
-//   },
-//   async rewrites() {
-//     return [
-//       {
-//         source: '/api/web3forms/:path*',
-//         destination: 'https://api.web3forms.com/:path*',
-//       },
-//       // Agar chat API ko proxy karna hai to ye uncomment kar sakte ho:
-//       // {
-//       //   source: '/api/chat/:path*',
-//       //   destination: 'https://mediquery-chat-server.onrender.com/api/chat/:path*',
-//       // },
-//     ];
-//   },
-// };
-
-// export default nextConfig;
-
-
 "use client";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 export const dynamicParams = true;
-
 
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useParams } from "next/navigation";
@@ -48,7 +11,6 @@ import { ChatInterface } from "@/components/chat/ChatInterface";
 import { Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
 import { useRouter } from "next/navigation";
 
 interface ChatMessage {
@@ -62,20 +24,16 @@ interface ChatMessage {
 export default function SharedChatPage() {
   const { user, loading } = useAuthContext();
   const params = useParams();
-  // const chatId = params?.chatId ? String(params.chatId) : null;
   const router = useRouter();
   const [chatId, setChatId] = useState<string | null>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(
-    null
-  );
+  const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [chatTitle, setChatTitle] = useState<string>("");
 
-  const CHAT_API_BASE_URL =
-    process.env.NEXT_PUBLIC_CHAT_API_BASE_URL ||
-    "https://mediquery-chat-server.onrender.com";
+  // Fixed API base URL - removed /api suffix
+  const CHAT_API_BASE_URL = process.env.NEXT_PUBLIC_CHAT_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
     const fetchSharedChat = async () => {
@@ -86,26 +44,34 @@ export default function SharedChatPage() {
       }
 
       try {
+        // Fixed API endpoint - added /api prefix
         const response = await fetch(
           `${CHAT_API_BASE_URL}/api/public/conversations/${chatId}`
         );
 
         if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Chat not found or no longer available");
+          }
           throw new Error(`Failed to load chat (${response.status})`);
         }
 
         const data = await response.json();
         setSharedMessages(data.conversation?.messages || []);
-        setChatTitle(data.conversation?.title || "");
+        setChatTitle(data.conversation?.title || "Untitled Chat");
       } catch (err) {
+        console.error("Error fetching shared chat:", err);
         setError(err instanceof Error ? err.message : "Failed to load chat");
       } finally {
         setIsLoaded(true);
       }
     };
 
-    if (chatId && !loading) fetchSharedChat();
-    else if (!loading) setIsLoaded(true);
+    if (chatId && !loading) {
+      fetchSharedChat();
+    } else if (!loading) {
+      setIsLoaded(true);
+    }
   }, [chatId, loading, CHAT_API_BASE_URL]);
 
   useEffect(() => {
@@ -113,19 +79,22 @@ export default function SharedChatPage() {
       setChatId(params.chatId);
     } else {
       console.error("Invalid chatId param:", params);
-      router.replace("/"); // fallback → redirect to home
+      setError("Invalid chat URL");
+      setIsLoaded(true);
     }
-  }, [params, router]);
+  }, [params]);
 
+  // Loading state
   if (loading || !isLoaded) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh]">
-        <Loader2 className="h-10 w-10 animate-spin text-gray-500" />
+        <Loader2 className="h-10 w-10 animate-spin text-blue-500" />
         <p className="mt-4 text-gray-600">Loading shared chat...</p>
       </div>
     );
   }
 
+  // Error state
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
@@ -133,21 +102,22 @@ export default function SharedChatPage() {
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>{error}</AlertDescription>
         </Alert>
-        <div className="mt-6 space-y-2">
+        <div className="mt-6 space-y-2 flex flex-col items-center">
           <Button onClick={() => window.location.reload()} variant="outline">
             Try Again
           </Button>
           <Button
-            onClick={() => (window.location.href = "/")}
+            onClick={() => router.push("/")}
             variant="default"
           >
-            Start New Chat
+            Go to Home
           </Button>
         </div>
       </div>
     );
   }
 
+  // Success state
   return (
     <div className="flex flex-col min-h-screen">
       {chatTitle && (
