@@ -34,8 +34,9 @@
 // export default nextConfig;
 
 
-
 "use client";
+
+export const dynamic = "force-dynamic";
 
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useParams } from "next/navigation";
@@ -48,7 +49,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 interface ChatMessage {
   id: string;
   content: string;
-  role: 'USER' | 'ASSISTANT' | 'SYSTEM';
+  role: "USER" | "ASSISTANT" | "SYSTEM";
   createdAt: string;
   metadata?: string;
 }
@@ -59,7 +60,9 @@ export default function SharedChatPage() {
   const chatId = params?.chatId ? String(params.chatId) : null;
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(null);
+  const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(
+    null
+  );
   const [error, setError] = useState<string | null>(null);
   const [chatTitle, setChatTitle] = useState<string>("");
 
@@ -118,7 +121,10 @@ export default function SharedChatPage() {
           <Button onClick={() => window.location.reload()} variant="outline">
             Try Again
           </Button>
-          <Button onClick={() => (window.location.href = "/")} variant="default">
+          <Button
+            onClick={() => (window.location.href = "/")}
+            variant="default"
+          >
             Start New Chat
           </Button>
         </div>

@@ -74,6 +74,10 @@ const nextConfig = {
       // },
     ];
   },
+  experimental: {
+    // Enable the app directory (appDir) feature
+    appDir: true,
+  },
 };
 
 export default nextConfig;
