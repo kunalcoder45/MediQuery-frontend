@@ -37,6 +37,7 @@
 "use client";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 export const dynamicParams = true;
 
 
@@ -47,6 +48,8 @@ import { ChatInterface } from "@/components/chat/ChatInterface";
 import { Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+
+import { useRouter } from "next/navigation";
 
 interface ChatMessage {
   id: string;
@@ -59,7 +62,9 @@ interface ChatMessage {
 export default function SharedChatPage() {
   const { user, loading } = useAuthContext();
   const params = useParams();
-  const chatId = params?.chatId ? String(params.chatId) : null;
+  // const chatId = params?.chatId ? String(params.chatId) : null;
+  const router = useRouter();
+  const [chatId, setChatId] = useState<string | null>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [sharedMessages, setSharedMessages] = useState<ChatMessage[] | null>(
@@ -102,6 +107,15 @@ export default function SharedChatPage() {
     if (chatId && !loading) fetchSharedChat();
     else if (!loading) setIsLoaded(true);
   }, [chatId, loading, CHAT_API_BASE_URL]);
+
+  useEffect(() => {
+    if (params?.chatId && typeof params.chatId === "string") {
+      setChatId(params.chatId);
+    } else {
+      console.error("Invalid chatId param:", params);
+      router.replace("/"); // fallback → redirect to home
+    }
+  }, [params, router]);
 
   if (loading || !isLoaded) {
     return (
