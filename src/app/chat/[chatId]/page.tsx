@@ -37,6 +37,8 @@
 "use client";
 
 export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+
 
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useParams } from "next/navigation";

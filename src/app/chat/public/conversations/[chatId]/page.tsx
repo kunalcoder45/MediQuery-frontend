@@ -47,10 +47,10 @@ export default function SharedChatPage() {
 
       try {
         console.log(`Fetching shared chat: ${chatId}`);
-        console.log(`API URL: ${CHAT_API_BASE_URL}/api/public/conversations/${chatId}`);
+        console.log(`API URL: ${CHAT_API_BASE_URL}/api/chat/conversations/${chatId}`);
 
         // Fixed: Corrected API URL format
-        const response = await fetch(`${CHAT_API_BASE_URL}/api/public/conversations/${chatId}`, {
+        const response = await fetch(`${CHAT_API_BASE_URL}/api/chat/conversations/${chatId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
