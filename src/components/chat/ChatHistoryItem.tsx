@@ -58,7 +58,7 @@ export function ChatHistoryItem({
 
   const handleShare = () => {
     setIsSharing(true);
-    const shareableLink = `${window.location.origin}/chat/${conversation.id}`;
+    const shareableLink = `${window.location.origin}/api/public/conversations/${conversation.id}`;
     navigator.clipboard.writeText(shareableLink).then(() => {
       toast({
         title: "Link Copied!",
