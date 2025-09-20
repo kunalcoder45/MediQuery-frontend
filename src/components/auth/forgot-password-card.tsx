@@ -68,7 +68,7 @@ export const ForgetPass = () => {
   };
 
   return (
-    <Card className="flex w-full max-w-[440px] shadow-none flex-col gap-6 p-5 md:p-8 mx-auto my-10">
+    <Card className="flex w-full max-w-[440px] shadow-none flex-col gap-6 p-5 md:p-8 mx-auto">
       <CardHeader className="flex flex-col items-center gap-2">
         <div className="relative flex size-[68px] shrink-0 items-center justify-center rounded-full backdrop-blur-xl md:size-24 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-neutral-500 before:to-transparent before:opacity-10">
           <div className="relative z-10 flex size-12 items-center justify-center rounded-full bg-background dark:bg-muted/80 shadow-xs ring-1 ring-inset ring-border md:size-16">
@@ -131,17 +131,6 @@ export const ForgetPass = () => {
               will receive an email with instructions on how to reset your
               password.
             </p>
-
-            <Separator />
-
-            <div className="text-sm flex items-center gap-1">
-              <p className="text-muted-foreground">
-                Don’t have access anymore?
-              </p>
-              <Button variant="link" size="sm" className="p-0 underline">
-                Try another method
-              </Button>
-            </div>
           </form>
         </Form>
       </CardContent>

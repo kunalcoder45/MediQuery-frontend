@@ -5,7 +5,7 @@ import SignUpForm from '@/components/auth/SignUpForm';
 
 const Register = () => {
   return (
-    <div>
+    <div className='h-screen'>
       <SignUpForm />
     </div>
   );

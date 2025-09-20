@@ -20,7 +20,7 @@ const page = () => {
     }
 
     return (
-        <div className="container py-8">
+        <div className="container h-screen mx-auto">
             <Profile user={user} />
         </div>
     );

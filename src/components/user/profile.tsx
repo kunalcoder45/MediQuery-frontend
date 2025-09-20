@@ -32,7 +32,7 @@ export function Profile({ user }: ProfileProps) {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-6 space-y-4">
+        <div className="flex flex-col items-center justify-center p-6 space-y-4 h-full">
             <Avatar className="h-24 w-24 md:h-32 md:w-32">
                 <AvatarImage
                     src={user.photoURL || undefined}
