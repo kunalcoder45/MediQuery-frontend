@@ -43,6 +43,12 @@ export default function SharedChatPage() {
         return;
       }
 
+      if (!CHAT_API_BASE_URL) {
+        setError("API configuration error. Please try again later.");
+        setIsLoaded(true);
+        return;
+      }
+
       try {
         // Fixed API endpoint - added /api prefix
         const response = await fetch(
@@ -73,6 +79,23 @@ export default function SharedChatPage() {
       setIsLoaded(true);
     }
   }, [chatId, loading, CHAT_API_BASE_URL]);
+
+  useEffect(() => {
+    console.log("Debug Info:", {
+      chatId,
+      params,
+      CHAT_API_BASE_URL: process.env.NEXT_PUBLIC_CHAT_API_BASE_URL,
+      loading
+    });
+
+    if (params?.chatId && typeof params.chatId === "string") {
+      setChatId(params.chatId);
+    } else {
+      console.error("Invalid chatId param:", params);
+      setError("Invalid chat URL");
+      setIsLoaded(true);
+    }
+  }, [params]);
 
   useEffect(() => {
     if (params?.chatId && typeof params.chatId === "string") {
