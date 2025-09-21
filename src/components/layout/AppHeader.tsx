@@ -170,15 +170,16 @@ export function AppHeader() {
                       </div>
                     ) : (
                       <div className="space-y-2 pt-4 border-t">
-                        <Button variant="outline" className="w-full mb-2">                          <Link href="/auth/login">
+                        <Link href="/auth/login">
+                          <Button variant="outline" className="w-full mb-2">
                             Sign In
-                          </Link>
-                        </Button>
-                        <Button className="w-full">
-                          <Link href="/auth/register">
+                          </Button>
+                        </Link>
+                        <Link href="/auth/register">
+                          <Button className="w-full">
                             Register
-                          </Link>
-                        </Button>
+                          </Button>
+                        </Link>
                       </div>
                     ))}
                 </div>
