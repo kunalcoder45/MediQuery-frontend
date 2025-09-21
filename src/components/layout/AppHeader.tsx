@@ -152,7 +152,7 @@ export function AppHeader() {
                   {!loading &&
                     (user ? (
                       <div className="space-y-2 pt-4 border-t">
-                        <Link href="/user/profile">
+                        <Link href="/under-construction">
                           <Button
                             variant="outline"
                             className="w-full justify-center"

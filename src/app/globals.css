@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -207,3 +209,53 @@ html::-webkit-scrollbar {
   animation: ping-fast 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   animation-delay: 0.4s;
 }
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
+
+.fonting {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+@keyframes animate-con {
+  0% { opacity: 0; }
+  33.3% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes animate-one {
+  0% { opacity: 0; transform: translate(-1500px, -1000px); }
+  70% { opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes animate-two {
+  0% { opacity: 0; transform: translate(100px, 1050px); }
+  70% { opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes animate-three {
+  0% { opacity: 0; transform: translateY(-1000px); }
+  70% { opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes animate-four {
+  0% { opacity: 0; transform: translate(-1500px, 1000px); }
+  70% { opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes animate-five {
+  0% { opacity: 0; }
+  70% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-one { animation: animate-one 1.5s ease-out forwards; }
+.animate-two { animation: animate-two 1.5s ease-out forwards; }
+.animate-three { animation: animate-three 1.5s ease-out forwards; }
+.animate-four { animation: animate-four 1.5s ease-out forwards; }
+.animate-five { animation: animate-five 1.5s ease-out forwards; }
+.animate-con { animation: animate-con 5.5s ease-out forwards; }
