@@ -141,8 +141,3 @@ Made with ❤️ by [@kunalcoder45](https://github.com/kunalcoder45)
 This project is licensed under the MIT License.
 
 ```
-
----
-
-Let me know if you want this in **Hindi**, or want badges, images, or setup scripts added!
-```
