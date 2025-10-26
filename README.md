@@ -139,5 +139,3 @@ Made with ❤️ by [@kunalcoder45](https://github.com/kunalcoder45)
 ## 📄 License
 
 This project is licensed under the MIT License.
-
-```
